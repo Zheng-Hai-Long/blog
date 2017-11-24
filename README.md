@@ -12,7 +12,7 @@
 3.搭建nginx
 -
 ###### 1)使用curl下载nginx(.tar.gz)
-                curl -L "http://nginx.org/download/nginx-1.13.7.tar.gz" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O 
+    curl -L "http://nginx.org/download/nginx-1.13.7.tar.gz" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O 
 ###### 2)解压 tar -zxvf 文件名
 ###### 3)编译安装nginx <1:make  <2:make install
 ###### 4)搭建静态资源访问服务
@@ -56,7 +56,7 @@ mysql -uroot -p
 sudo grep 'temporary password' /var/log/mysqld.log 
 ###### 8)修改root密码
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password_复杂点的密码';<br>
-注意：若修改失败，ERROR 1820 (HY000)，修改validate_password_policy参数的值<br>
+`注意`：若修改失败，ERROR 1820 (HY000)，修改validate_password_policy参数的值<br>
 set global validate_password_policy=0;\<br>
 set global validate_password_length=1;\<br>
 在执行修改密码：ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password_复杂点的密码'<br>
