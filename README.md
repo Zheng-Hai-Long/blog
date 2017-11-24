@@ -11,21 +11,21 @@
 
 3.搭建nginx
 -
-###### 1)使用curl下载nginx(.tar.gz)
+###### *1)使用curl下载nginx(.tar.gz)
     curl -L "http://nginx.org/download/nginx-1.13.7.tar.gz" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O 
-###### 2)解压 tar -zxvf 文件名
-###### 3)编译安装nginx <1:make  <2:make install
-###### 4)搭建静态资源访问服务
+###### *2)解压 tar -zxvf 文件名
+###### *3)编译安装nginx <1:make  <2:make install
+###### *4)搭建静态资源访问服务
 修改nginx的conf文件夹下的nginx.conf,配置服务<br>
-server {\<br>
-        listen     80;<br>
-        server_name    res.17xs.org;<br>
-        charset utf-8;<br>
-        access_log off;<br>
-        location / {<br>
-        	root  /usr/local/tomcat-7.0.55/webapps/upload;<br>
-        }<br>
-    }\<br>
+>>server {\<br>
+>>>>    listen     80;<br>
+>>>>    server_name    res.17xs.org;<br>
+>>>>    charset utf-8;<br>
+>>>>    access_log off;<br>
+>>>>    location / {<br>
+>>>>>>  	root  /usr/local/tomcat-7.0.55/webapps/upload;<br>
+>>>>    }<br>
+>> }\<br>
 ###### 5 )启动服务 
 /opt/nginx/sbin/nginx  -c /opt/nginx/conf/nginx.conf 
 ###### 6)停止服务 
