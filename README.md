@@ -56,14 +56,13 @@
     sudo grep 'temporary password' /var/log/mysqld.log 
 ###### 8)修改root密码
     ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password_复杂点的密码';
-    `注意`：若修改失败，ERROR 1820 (HY000)，修改validate_password_policy参数的值
+`注意`：若修改失败，ERROR 1820 (HY000)，修改validate_password_policy参数的值<br>
     set global validate_password_policy=0;<br>
     set global validate_password_length=1;<br>
     在执行修改密码：ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password_复杂点的密码'
 ###### 9)授权其他机器访问
     GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;
-    刷新权限<br>
-    FLUSH  PRIVILEGES;
+    刷新权限:FLUSH  PRIVILEGES;
 
 5.搭建tomcat
 -
@@ -71,7 +70,6 @@
     curl -L "http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.tar.gz" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O
 ###### 2)解压tomcat,编译安装（make;make install）
 ###### 3)启动tomcat
-    tomcat bin目录下
     ./startup.sh
 ###### 4)停止tomcat
     ./shutdown.sh
