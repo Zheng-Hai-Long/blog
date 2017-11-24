@@ -18,7 +18,7 @@
 ###### 2)解压
     tar -zxvf 文件名
 ###### 3)编译安装nginx
-    make
+    make
     make install
 ###### 4)搭建静态资源访问服务
 修改nginx的conf文件夹下的nginx.conf,配置服务<br>
@@ -112,14 +112,14 @@
 ###### 1)stop mysql service
     net stop mysql
 ###### 2)运行cmd,切换到mysql的bin目录，运行命令
-    mysqld --defaults-file="C:\Program Files\MySQL\MySQL Server 5.1\my.ini" --console --skip-grant-tables
+    mysqld --defaults-file="C:\Program Files\MySQL\MySQL Server 5.1\my.ini" --console --skip-grant-tables
 ###### 3)打开第二个cmd2窗口，连接mysql,提示输入密码时，直接回车
-    mysql -u root -p
+    mysql -u root -p
 ###### 4)查看数据库，切换数据库
     show databases;
-    use mysql;
+    use mysql;
 ###### 5)更改root密码
-    UPDATE user SET Password=PASSWORD('newpassword') where USER='root';
+    UPDATE user SET Password=PASSWORD('newpassword') where USER='root';
 ###### 6)刷新权限,退出重新登录
-    FLUSH PRIVILEGES;
+    FLUSH PRIVILEGES;
 
