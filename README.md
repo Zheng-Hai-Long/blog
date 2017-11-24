@@ -72,9 +72,9 @@
 5.卸载mysql
 -
 ###### 1)卸载前关闭MySQL服务，方法1
-    check mysql运行状态：service mysql status
-    stop mysql：service mysql stop
-    check mysql运行状态：service mysql status<
+    check mysql运行状态：service mysql status
+    stop mysql：service mysql stop
+    check mysql运行状态：service mysql status<
 ###### 2)卸载前关闭MySQL服务，方法2
     check mysql运行状态：./mysql status
     stop mysql：./mysql stop
