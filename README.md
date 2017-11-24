@@ -1,4 +1,4 @@
-申请及连接aws服务器的总结
+申请/连接/配置aws linux(redhat)服务器的总结
 =
 1.申请aws服务器（注册账号-绑定信用卡-选择ec2-配置安全组）
 -
@@ -64,7 +64,36 @@
     GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;
     刷新权限:FLUSH  PRIVILEGES;
 
-5.搭建tomcat
+5.卸载mysql
+-
+###### 1)卸载前关闭MySQL服务
+`方法1`<br>
+    check mysql运行状态：service mysql status<br>
+    stop mysql：service mysql stop<br>
+    check mysql运行状态：service mysql status<br>
+`方法2`<br>
+    check mysql运行状态：./mysql status<br>
+    stop mysql：./mysql stop<br>
+    check mysql运行状态：./mysql status<br>
+###### 2)检查是否安装了MySQL组件
+    rpm -qa | grep -i mysql
+    MySQL-devel-5.6.23-1.linux_glibc2.5
+    MySQL-client-5.6.23-1.linux_glibc2.5
+    MySQL-server-5.6.23-1.linux_glibc2.5
+###### 3)卸载删除mysql各类组件
+    rpm -ev 组件名
+###### 4)收集MySQL对应的文件夹信息
+    find / -name mysql
+###### 5)删除对应文件夹
+    rm -rf mysql路径
+###### 6）删除mysql用户及用户组
+    more /etc/passwd | grep mysql
+    more /etc/shadow | grep mysql
+    more /etc/group | grep mysql
+    userdel mysql
+    groupdel mysql
+
+6.搭建tomcat
 -
 ###### 1)下载tomcat(.tar.gz)
     curl -L "http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.tar.gz" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O
