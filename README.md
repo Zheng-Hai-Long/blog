@@ -10,7 +10,6 @@
 ###### 4)设置root用户密码，切换到root用户
     sudo passwd root
     su root
-
 3.搭建nginx
 -
 ###### 1)使用curl下载nginx(.tar.gz)
