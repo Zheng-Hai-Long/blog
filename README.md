@@ -8,8 +8,9 @@
 ###### 2)使用ppk文件和服务器ipv4来连接服务器
 ###### 3)使用默认的ec2-user来登录服务器
 ###### 4)设置root用户密码，切换到root用户
-    sudo passwd root
-    su root
+        sudo passwd root
+        su root
+    
 3.搭建nginx
 -
 ###### 1)使用curl下载nginx(.tar.gz)
