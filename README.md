@@ -66,27 +66,26 @@
 
 5.卸载mysql
 -
-###### 1)卸载前关闭MySQL服务
-`方法1`<br>
-    check mysql运行状态：service mysql status<br>
-    stop mysql：service mysql stop<br>
-    check mysql运行状态：service mysql status<br>
-`方法2`<br>
-    check mysql运行状态：./mysql status<br>
-    stop mysql：./mysql stop<br>
-    check mysql运行状态：./mysql status<br>
-###### 2)检查是否安装了MySQL组件
+###### 1)卸载前关闭MySQL服务，方法1
+    check mysql运行状态：service mysql status
+    stop mysql：service mysql stop
+    check mysql运行状态：service mysql status<
+###### 2)卸载前关闭MySQL服务，方法2
+    check mysql运行状态：./mysql status
+    stop mysql：./mysql stop
+    check mysql运行状态：./mysql status
+###### 3)检查是否安装了MySQL组件
     rpm -qa | grep -i mysql
     MySQL-devel-5.6.23-1.linux_glibc2.5
     MySQL-client-5.6.23-1.linux_glibc2.5
     MySQL-server-5.6.23-1.linux_glibc2.5
-###### 3)卸载删除mysql各类组件
+###### 4)卸载删除mysql各类组件
     rpm -ev 组件名
-###### 4)收集MySQL对应的文件夹信息
+###### 5)收集MySQL对应的文件夹信息
     find / -name mysql
-###### 5)删除对应文件夹
+###### 6)删除对应文件夹
     rm -rf mysql路径
-###### 6）删除mysql用户及用户组
+###### 7）删除mysql用户及用户组
     more /etc/passwd | grep mysql
     more /etc/shadow | grep mysql
     more /etc/group | grep mysql
@@ -102,3 +101,20 @@
     ./startup.sh
 ###### 4)停止tomcat
     ./shutdown.sh
+
+7.windows下忘记mysql密码，跳过登录进入mysql解决方案
+-
+###### 1)stop mysql service
+    net stop mysql
+###### 2)运行cmd,切换到mysql的bin目录，运行命令
+    mysqld --defaults-file="C:\Program Files\MySQL\MySQL Server 5.1\my.ini" --console --skip-grant-tables
+###### 3)打开第二个cmd2窗口，连接mysql,提示输入密码时，直接回车
+    mysql -u root -p
+###### 4)查看数据库，切换数据库
+    show databases;
+    use mysql;
+###### 5)更改root密码
+    UPDATE user SET Password=PASSWORD('newpassword') where USER='root';
+###### 6)刷新权限,退出重新登录
+    FLUSH PRIVILEGES;
+
