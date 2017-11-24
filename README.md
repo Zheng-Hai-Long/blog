@@ -6,13 +6,13 @@
 -
 ###### 1)使用puttygen生成ppk文件
 ###### 2)使用ppk文件和服务器ipv4来连接服务器
-# 3)使用默认的ec2-user来登录服务器
-# 4)创建root用户
+###### 3)使用默认的ec2-user来登录服务器
+###### 4)创建root用户
 
 3.搭建nginx
 -
 ###### 1)使用curl下载nginx(.tar.gz)
-curl -L "http://nginx.org/download/nginx-1.13.7.tar.gz" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O 
+                curl -L "http://nginx.org/download/nginx-1.13.7.tar.gz" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O 
 ###### 2)解压 tar -zxvf 文件名
 ###### 3)编译安装nginx <1:make  <2:make install
 ###### 4)搭建静态资源访问服务
