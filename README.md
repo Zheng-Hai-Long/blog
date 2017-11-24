@@ -4,8 +4,8 @@
 -
 2.puttv连接aws
 -
-# 1)使用puttygen生成ppk文件
-# 2)使用ppk文件和服务器ipv4来连接服务器
+###### 1)使用puttygen生成ppk文件
+###### 2)使用ppk文件和服务器ipv4来连接服务器
 # 3)使用默认的ec2-user来登录服务器
 # 4)创建root用户
 
@@ -16,7 +16,7 @@ curl -L "http://nginx.org/download/nginx-1.13.7.tar.gz" -H "Cookie: oraclelicens
 # 2)解压 tar -zxvf 文件名
 # 3)编译安装nginx <1:make  <2:make install
 # 4)搭建静态资源访问服务
-修改nginx的conf文件夹下的nginx.conf,配置服务 \<br>
+修改nginx的conf文件夹下的nginx.conf,配置服务<br>
 server {\<br>
         listen     80;\<br>
         server_name    res.17xs.org;\<br>
