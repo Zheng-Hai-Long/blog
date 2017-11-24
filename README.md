@@ -23,54 +23,55 @@
 >>    charset utf-8;<br>
 >>    access_log off;<br>
 >>    location / {<br>
->>>  	root  /usr/local/tomcat-7.0.55/webapps/upload;<br>
+>>>  	root  /usr/local/tomcat-7.0.55/webapps/upload;
 >>    }<br>
-> }\<br>
+> }<br>
 ###### 5 )启动服务 
-/opt/nginx/sbin/nginx  -c /opt/nginx/conf/nginx.conf 
+    /opt/nginx/sbin/nginx  -c /opt/nginx/conf/nginx.conf 
 ###### 6)停止服务 
-/opt/nginx/sbin/nginx -s stop 
+    /opt/nginx/sbin/nginx -s stop 
 ###### 7)查看端口占用情况 
-netstat -tunlp 
+    netstat -tunlp 
 ###### 8)如果其它机器无法访问，解决方法如下： 
-/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT<br>
+    /sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT<br>
 然后保存： <br>
-/etc/rc.d/init.d/iptables save<br>
+    /etc/rc.d/init.d/iptables save<br>
 重启防火墙 <br>
-/etc/init.d/iptables restart<br>
+    /etc/init.d/iptables restart<br>
     
 4.搭建mysql
 -
 ###### 1)下载mysql(.rpm)
-curl -L "https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O
+    curl -L "https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O
 ###### 2)下载 mysql57-community-release-el7-10.noarch.rpm
 ###### 3)添加Mysql Yum Repository
-sudo rpm -Uvh mysql57-community-release-el7-10.noarch.rpm
+    sudo rpm -Uvh mysql57-community-release-el7-10.noarch.rpm
 ###### 4)rpm 安装mysql
-sudo yum install mysql-community-server-5.7.18-1.el7.x86_64.rpm
+    sudo yum install mysql-community-server-5.7.18-1.el7.x86_64.rpm
 ###### 5)启动mysql
-sudo service mysqld start
+    sudo service mysqld start
 ###### 6)登录mysql
-mysql -uroot -p
+    mysql -uroot -p
 ###### 7)5.7版本是随机生成root密码，使用查看日志找到密码
-sudo grep 'temporary password' /var/log/mysqld.log 
+    sudo grep 'temporary password' /var/log/mysqld.log 
 ###### 8)修改root密码
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password_复杂点的密码';<br>
+    ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password_复杂点的密码';<br>
 `注意`：若修改失败，ERROR 1820 (HY000)，修改validate_password_policy参数的值<br>
-set global validate_password_policy=0;\<br>
-set global validate_password_length=1;\<br>
+    set global validate_password_policy=0;\<br>
+    set global validate_password_length=1;\<br>
 在执行修改密码：ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password_复杂点的密码'<br>
 ###### 9)授权其他机器访问
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;<br>
+    GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;<br>
 刷新权限<br>
-FLUSH  PRIVILEGES;<br>
+    FLUSH  PRIVILEGES;<br>
 
 5.搭建tomcat
 -
 ###### 1)下载tomcat(.tar.gz)
-curl -L "http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.tar.gz" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O
+    curl -L "http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.tar.gz" -H "Cookie: oraclelicense=accept-securebackup-cookie"  -H "Connection: keep-alive" -O
 ###### 2)解压tomcat,编译安装（make;make install）
 ###### 3)启动tomcat
-tomcat bin目录下 ./startup.sh
+tomcat bin目录下 <br>
+    ./startup.sh
 ###### 4)停止tomcat
-./shutdown.sh
+    ./shutdown.sh
