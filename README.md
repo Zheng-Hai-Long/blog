@@ -123,3 +123,16 @@
 ###### 6)刷新权限,退出重新登录
     FLUSH PRIVILEGES;
 
+8.linux里java环境配置
+-
+
+9.linux里mysql数据的备份
+-
+
+10.java io File的使用
+-
+
+11.java nio与io
+-
+
+
