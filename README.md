@@ -156,25 +156,25 @@
     16.获取文件长度：file.length()
     17.根据目录获取多文件File[]：file.listFiles()
 ###### 4)遍历文件示例
-<public static void listDirectory(File dir) throws IOException{
-<<if(!dir.exists()){
-<<< throw new IllegalArgumentException("文件不存在");
-<<}
-<<if(!dir.isDirectory()){
-<<<throw new IllegalArgumentException("目录不存在");
-<<}
-<<File[] files = dir.listFiles();
-<<if(files != null && files.length > 0){
-<<<for (File file : files){
-<<<<if(file.isDirectory()){
-<<<<<//递归
-<<<<<listDirectory(file);
-<<<<}else{
-<<<<<System.out.println(file);
-<<<<}
-<<<}
-<<}
-<<}
+> public static void listDirectory(File dir) throws IOException{<br>
+>> if(!dir.exists()){<br>
+>>> throw new IllegalArgumentException("文件不存在");<br>
+>> }<br>
+>> if(!dir.isDirectory()){<br>
+>>> throw new IllegalArgumentException("目录不存在");<br>
+>> }<br>
+>> File[] files = dir.listFiles();<br>
+>> if(files != null && files.length > 0){<br>
+>>> for (File file : files){<br>
+>>>> if(file.isDirectory()){<br>
+>>>>> //递归<br>
+>>>>> listDirectory(file);<br>
+>>>> }else{<br>
+>>>>> System.out.println(file);<br>
+>>>> }<br>
+>>> }<br>
+>> }<br>
+> }<br>
 ###### 5)RandomAccessFile(提供的对文件内容的访问，既可以读文件，也可以写文件;支持随机访问文件，可以访问文件的任何位置)
     1.打开文件有两种模式 “rw”(读写) 和“r”(只读),RandomAccessFile raf = new RandomAccessFile(file, "rw");
     2.raf.seek(0);//定位指针位置，读取文件初始值是0，从开头读取
