@@ -139,8 +139,8 @@
 ###### 2)Java文件模型（在硬盘的文件是 byte byte byte存储的，是数据的集合)
 ###### 3)File API
     1.构造方法：new File("相对路径/绝对路径")，new File("文件目录","文件名")
-    2.File.separator(路径分隔符，适用windows/linux)，也可以用"/"或"\\"
-    3.判断是否是目录：file.isDirectory()，目录不存在或不是目录，返回false
+    2.File.separator(路径分隔符，适用windows/linux)，也可以用"/"或"\\"
+    3.判断是否是目录：file.isDirectory()，目录不存在或不是目录，返回false
     4.判断是否是文件：file.isFile()
     5.判断文件是否存在：file.exists()
     6.创建目录或多级目录：file.mkdir()或者file.mkdirs()
