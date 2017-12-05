@@ -203,7 +203,6 @@
     String s2 = new String(buff2);
     System.out.println(s2);
 ###### 7)InputSteam(抽象了应用程序读取数据的方式)
-    FileInputStream in = new FileInputStream(File);
     EOF = End 读到-1就读到结尾
     int b = in.read();读取一个字节无符号填充到int低八位.-1是EOF
     in.read(byte[] buf) 读取数据填充到字节数组buf
@@ -223,7 +222,6 @@
 >> }<br>
 > }<br>
 ###### 9)OutSteam(抽象了应用程序写出数据的方式)
-    FileOutStream in = new FileOutStream(File);
     out.write(int b)写出一个byte到流，b的低8位
     out.write(byte[] buf)将buf字节数组都写到流
     out.write(byte[] buf, int start,int size) 字节数组buf从start位置开始写size长度的字节到流
