@@ -202,8 +202,32 @@
     randomAccessFile.read(buff2);
     String s2 = new String(buff2);
     System.out.println(s2);
-###### 7)FileInputSteam
-###### 8)FileOutSteam
+###### 7)InputSteam(抽象了应用程序读取数据的方式)
+    FileInputStream in = new FileInputStream(File);
+    EOF = End 读到-1就读到结尾
+    int b = in.read();读取一个字节无符号填充到int低八位.-1是EOF
+    in.read(byte[] buf) 读取数据填充到字节数组buf
+    in.read(byte[] buf,int start, int size)读取数据到字节数组buf从buf的start位置开始存放size长度分数据
+###### 8)FileInputSteam示例
+> File file = new File(path, fileName);<br>
+> FileInputStream in = new FileInputStream(file);<br>
+> byte[] buff = new byte[1024];<br>
+> int j = 0;<br>
+> int k;<br>
+> while ((k = in.read(buff, 0, buff.length)) != -1){<br>
+>> for (int i = 0; i < k; i++){<br>
+>>> System.out.print(Integer.toHexString(buff[i] & 0xff) + " ");<br>
+>> }<br>
+>> if(j++ % 10 == 0){<br>
+>>> System.out.println();<br>
+>> }<br>
+> }<br>
+###### 9)OutSteam(抽象了应用程序写出数据的方式)
+    FileOutStream in = new FileOutStream(File);
+    out.write(int b)写出一个byte到流，b的低8位
+    out.write(byte[] buf)将buf字节数组都写到流
+    out.write(byte[] buf, int start,int size) 字节数组buf从start位置开始写size长度的字节到流
+###### 8)FileOutSteam示例
 
 11.java nio与io
 -
