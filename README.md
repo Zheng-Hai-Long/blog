@@ -133,14 +133,14 @@
 10.java io File的使用
 -
 ###### 1)各种编码占用的字节数
-    1.gbk编码中文占用2个字节，英文占用1个字节
+    1.gbk编码中文占用2个字节，英文占用1个字节
     2.utf-8编码中文占用3个字节，英文占用一个字节
-    3.utf-16be 编码中文占用2个字节，英文占用2个字节
+    3.utf-16be 编码中文占用2个字节，英文占用2个字节
 ###### 2)Java文件模型（在硬盘的文件是 byte byte byte存储的，是数据的集合)
 ###### 3)File
 ###### 4)遍历文件
 ###### 5)RandomAccessFile(提供的对文件内容的访问，既可以读文件，也可以写文件;支持随机访问文件，可以访问文件的任何位置)
-    1.打开文件有两种模式 “rw”(读写) 和“r”(只读),RandomAccessFile raf = new RandomAccessFile(file, "rw");
+    1.打开文件有两种模式 “rw”(读写) 和“r”(只读),RandomAccessFile raf = new RandomAccessFile(file, "rw");
     2.raf.seek(0);//定位指针位置，读取文件初始值是0，从开头读取
     3.写方法raf.write(char)  -->只写一个字节（后8位），同时指针指向下一个位置，准备再次写入
     4.读方法int b = raf.read()  --> 只读一个字节
