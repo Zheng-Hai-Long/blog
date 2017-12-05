@@ -31,7 +31,7 @@
 >>>  	root  /usr/local/tomcat-7.0.55/webapps/upload;
 >>    }<br>
 > }<br>
-###### 5 )启动服务 
+###### 5)启动服务 
     /opt/nginx/sbin/nginx  -c /opt/nginx/conf/nginx.conf 
 ###### 6)停止服务 
     /opt/nginx/sbin/nginx -s stop 
@@ -90,7 +90,7 @@
     find / -name mysql
 ###### 6)删除对应文件夹
     rm -rf mysql路径
-###### 7）删除mysql用户及用户组
+###### 7)删除mysql用户及用户组
     more /etc/passwd | grep mysql
     more /etc/shadow | grep mysql
     more /etc/group | grep mysql
@@ -129,8 +129,45 @@
 9.linux里mysql数据的备份
 -
 
+
 10.java io File的使用
 -
+###### 1)各种编码占用的字节数
+    1.gbk编码中文占用2个字节，英文占用1个字节
+    2.utf-8编码中文占用3个字节，英文占用一个字节
+    3.utf-16be 编码中文占用2个字节，英文占用2个字节
+###### 2)Java文件模型（在硬盘的文件是 byte byte byte存储的，是数据的集合)
+###### 3)File
+###### 4)遍历文件
+###### 5)RandomAccessFile(提供的对文件内容的访问，既可以读文件，也可以写文件;支持随机访问文件，可以访问文件的任何位置)
+    1.打开文件有两种模式 “rw”(读写) 和“r”(只读),RandomAccessFile raf = new RandomAccessFile(file, "rw");
+    2.raf.seek(0);//定位指针位置，读取文件初始值是0，从开头读取
+    3.写方法raf.write(char)  -->只写一个字节（后8位），同时指针指向下一个位置，准备再次写入
+    4.读方法int b = raf.read()  --> 只读一个字节
+    5.文件读写完成之后一定要关闭，避免出现一些异常情况
+###### 6)RandomAccessFile示例
+     File file = new File(path, fileName);
+     RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+     //打印指针
+     System.out.println("文件指针初始：" + randomAccessFile.getFilePointer());
+     //写入
+     randomAccessFile.write('b');//每次写入一个字节
+    //randomAccessFile.writeBytes("郑海龙");//用writeBytes写入中文，默认用ansi编码
+    //randomAccessFile.write("萨达".getBytes());默认用项目的编码
+    
+    randomAccessFile.seek(0);
+    byte[] buff = new byte[1];
+    randomAccessFile.read(buff);
+    String s1 = new String(buff);
+    System.out.print(s1);
+
+    randomAccessFile.seek(1);
+    byte[] buff2 = new byte[9];
+    randomAccessFile.read(buff2);
+    String s2 = new String(buff2);
+    System.out.println(s2);
+###### 7)FileInputSteam
+###### 8)FileOutSteam
 
 11.java nio与io
 -
