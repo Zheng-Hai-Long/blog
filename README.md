@@ -182,26 +182,26 @@
     4.读方法int b = raf.read()  --> 只读一个字节
     5.文件读写完成之后一定要关闭，避免出现一些异常情况
 ###### 6)RandomAccessFile示例
-     File file = new File(path, fileName);
-     RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
-     //打印指针
-     System.out.println("文件指针初始：" + randomAccessFile.getFilePointer());
-     //写入
-     randomAccessFile.write('b');//每次写入一个字节
-    //randomAccessFile.writeBytes("郑海龙");//用writeBytes写入中文，默认用ansi编码
-    //randomAccessFile.write("萨达".getBytes());默认用项目的编码
+>>File file = new File(path, fileName);
+>>RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+>>//打印指针
+>>System.out.println("文件指针初始：" + randomAccessFile.getFilePointer());
+>>//写入
+>>randomAccessFile.write('b');//每次写入一个字节
+>>//randomAccessFile.writeBytes("郑海龙");//用writeBytes写入中文，默认用ansi编码
+>>//randomAccessFile.write("萨达".getBytes());默认用项目的编码
     
-    randomAccessFile.seek(0);
-    byte[] buff = new byte[1];
-    randomAccessFile.read(buff);
-    String s1 = new String(buff);
-    System.out.print(s1);
+>>randomAccessFile.seek(0);
+>>byte[] buff = new byte[1];
+>>randomAccessFile.read(buff);
+>>String s1 = new String(buff);
+>>System.out.print(s1);
 
-    randomAccessFile.seek(1);
-    byte[] buff2 = new byte[9];
-    randomAccessFile.read(buff2);
-    String s2 = new String(buff2);
-    System.out.println(s2);
+>>randomAccessFile.seek(1);
+>>byte[] buff2 = new byte[9];
+>>randomAccessFile.read(buff2);
+>>String s2 = new String(buff2);
+>>System.out.println(s2);
 ###### 7)InputSteam(抽象了应用程序读取数据的方式)
     EOF = End 读到-1就读到结尾
     int b = in.read();读取一个字节无符号填充到int低八位.-1是EOF
@@ -231,23 +231,20 @@
     FlieOutputStream out = new FileOutputStream("文件名",true);文件存在则追加
 ###### 12)FileOutSteam示例
 >public static void d4(String path, String fileName) throws IOException{
->>        File file = new File(path, fileName);
->>        FileInputStream fileInputStream = new FileInputStream(file);
->>        FileOutputStream fileOutputStream = new FileOutputStream(new File(path, "d2.txt"));
->>        byte[] buff = new byte[1024];
->>        int by;
+>>File file = new File(path, fileName);
+>>FileInputStream fileInputStream = new FileInputStream(file);
+>>FileOutputStream fileOutputStream = new FileOutputStream(new File(path, "d2.txt"));
+>>byte[] buff = new byte[1024];
+>>int by;
 
->>        /*while ((by = fileInputStream.read(buff, 0, buff.length)) != -1){//一个字节一个字节的读取
->>>            System.out.println((char)by);
->>        }*/
-
->>        while ((by = fileInputStream.read(buff, 0, buff.length)) != -1){//批量读取
->>>            fileOutputStream.write(buff, 0, by);
->>>            fileOutputStream.flush();
->>        }
->>        fileOutputStream.close();
->>        fileInputStream.close();
->    }
+>>/*while ((by = fileInputStream.read(buff, 0, buff.length)) != -1){//一个字节一个字节的读取System.out.println((char)by);}*/
+>>while ((by = fileInputStream.read(buff, 0, buff.length)) != -1){//批量读取
+>>>fileOutputStream.write(buff, 0, by);
+>>>fileOutputStream.flush();
+>>}
+>>fileOutputStream.close();
+>>fileInputStream.close();
+>}
 ###### 13)DataInputSteam/DataOutputSteam
     DataIntputStream对“流”功能的扩展，可以更加方便的读取 int,long，字符等类型数据，readInt readLong 方法都是对FileInputStream方法的包装
     DataOutputStream：使用FileOutputStream构造出来，通过包装FileOutput，可以调用FileOutput类的write方法来构造新的更方便的写方法：
@@ -256,46 +253,46 @@
     用utf-16be写出字符串，或字符串数组
 ###### 13)DataInputSteam/DataOutputSteam示例
 >public static void piliang_data_copy(String path, String fileName) throws IOException{
->>        long startTimes = System.currentTimeMillis();
->>        File file = new File(path, fileName);
->>        DataInputStream dataInputStream = new DataInputStream(new FileInputStream(file));
->>        DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(new File(path,"15.rar")));
-
->>        byte[] buff = new byte[1024];
->>        int by;
->>        while ((by = dataInputStream.read(buff, 0, buff.length)) != -1){
->>>            dataOutputStream.write(buff, 0, by);
->>>            dataOutputStream.flush();
->>        }
-
->>        dataOutputStream.close();
->>        dataInputStream.close();
->>        long endTimes = System.currentTimeMillis();
->>        System.out.println("DataInputStream 批量读取：" + (endTimes - startTimes));
->    }
+>>long startTimes = System.currentTimeMillis();
+>>File file = new File(path, fileName);
+>>DataInputStream dataInputStream = new DataInputStream(new FileInputStream(file));
+>>DataOutputStream dataOutputStream = new DataOutputStream(
+>>new FileOutputStream(new File(path,"15.rar")));
+>>byte[] buff = new byte[1024];
+>>int by;
+>>while ((by = dataInputStream.read(buff, 0, buff.length)) != -1){
+>>>dataOutputStream.write(buff, 0, by);
+>>>dataOutputStream.flush();
+>>}
+>>dataOutputStream.close();
+>>dataInputStream.close();
+>>long endTimes = System.currentTimeMillis();
+>>System.out.println("DataInputStream 批量读取：" + (endTimes - startTimes));
+>}
 ###### 14)BufferedInputSteam/BufferedOutputSteam示例
 >public static void piliang_buffered_copy(String path, String fileName) throws IOException{
->>        long startTimes = System.currentTimeMillis();
->>        File file = new File(path, fileName);
->>        BufferedInputStream bufferedInputStream = new BufferedInputStream( new FileInputStream(file));
->>        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(new File(path,"16.rar")));
->>        byte[] buff = new byte[1024];
->>        int by;
->>        while ((by = bufferedInputStream.read(buff, 0, buff.length)) != -1){
->>>            bufferedOutputStream.write(buff, 0, by);
->>>            bufferedOutputStream.flush();
->>        }
->>        bufferedOutputStream.close();
->>        bufferedInputStream.close();
->>        long endTimes = System.currentTimeMillis();
->>        System.out.println("BufferedInputStream 批量读取：" + (endTimes - startTimes));
->    }
+>>long startTimes = System.currentTimeMillis();
+>>File file = new File(path, fileName);
+>>BufferedInputStream bufferedInputStream = new BufferedInputStream( new FileInputStream(file));
+>>BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
+>>new FileOutputStream(new File(path,"16.rar")));
+>>byte[] buff = new byte[1024];
+>>int by;
+>>while ((by = bufferedInputStream.read(buff, 0, buff.length)) != -1){
+>>>bufferedOutputStream.write(buff, 0, by);
+>>>bufferedOutputStream.flush();
+>>}
+>>bufferedOutputStream.close();
+>>bufferedInputStream.close();
+>>long endTimes = System.currentTimeMillis();
+>>System.out.println("BufferedInputStream 批量读取：" + (endTimes - startTimes));
+>}
 ###### 15)字节流的整体效率：FileOut/FileInt < DataOut/DataInt < BufferedOut/BufferedInt，文件执行完毕要关闭流，在finally里面关，不然抛出异常就没法关闭了
 ###### 16)字符流
     字符的处理，一次处理一个字符
     字符的底层依然是基本的字节序列
     InputStreamReader isr=new InputStreamReader(in，"编码格式");
-    InputStreamReader isr=new InputStreamReader(in);//默认编译器编码
+    InputStreamReader isr=new InputStreamReader(in);//默认编译器编码
     InputStreamReader  完成byte流解析为char流，按照编码解析
     OutputStreamWriter 提供char流到byte流，按照编码处理
 ###### 17)InputStreamreader/OutputStreamWrite
