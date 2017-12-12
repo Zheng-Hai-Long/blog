@@ -296,6 +296,66 @@
     InputStreamReader  完成byte流解析为char流，按照编码解析
     OutputStreamWriter 提供char流到byte流，按照编码处理
 ###### 17)InputStreamreader/OutputStreamWrite
+###### 18)FileReader/FileWrite
+###### 19)BufferedReader/BufferedWrite
+###### 20)PrintReader/PrintWrite
+###### 19)ObjectInputSteam/ObjectOutputSteam（IO——对象的序列化和反序列化）
+    1)对象序列化，就是将Object转换成byte序列，反之叫对象的反序列化
+    2)序列化流（ObjectOutputStream)，字节的过滤流 —— writeObject()方法
+    反序列化流（ObjectInputStream）—— readObject（）方法
+    3)序列化接口（Serializable）
+    对象必须实现序列化接口，才能进行序列化，否则将出现异常。
+    这个借口，没有任何方法，只是一个【标准】
+    transient关键字
+    1)transient修饰的元素，不会进行JVM默认的序列化：如int transient age = 10;在序列化和反序列化后，age的值为默认分配的值0
+    2)可以自己通过重写序列化操作方式，来对transient修饰的元素进行想要的序列化。
+    方法：通过从ArrayList中拿到writeObject()和readObject()方法，进行自写完成。
+    先执行s.defaultWriteObject(); 和 s.defaultReadObject()方法
+    再对于无法默认序列化的成员，可以进行.writeObject(obj)和this.obj = s.readObject()完成序列化
+    3)这样做的目的是提高效率。如ArrayList里，对数组的有效对象进行序列化
+###### 20)ObjectOutputSteam示例
+>public static void d7(){
+>>       ObjectOutputStream objectOutputStream = null;
+>>       try {
+>>>           objectOutputStream = new ObjectOutputStream(
+>>>>                   new FileOutputStream("c:\\test\\java\\dd3.txt")
+>>>           );
+>>>           StuTest stuTest = new StuTest(1, "省道", 17);
+>>>           objectOutputStream.writeObject(stuTest);
+>>>           objectOutputStream.flush();
+>>       } catch (IOException e) {
+>>>           e.printStackTrace();
+>>       }finally {
+>>>           try {
+>>>>               objectOutputStream.close();
+>>>           }catch (IOException e){
+>>>>               e.printStackTrace();
+>>>           }
+>>       }
+>   }
+###### 21)ObjectInputSteam示例
+>public static void d7(){
+>>       ObjectInputStream objectInputStream = null;
+>>       try {
+>>>           objectInputStream= new ObjectInputStream(
+>>>>                   new FileInputStream("c:\\test\\java\\dd3.txt")
+>>>           );
+>>>           try {
+>>>>               StuTest test = (StuTest) objectInputStream.readObject();
+>>>>               System.out.print(test);
+>>>           } catch (ClassNotFoundException e) {
+>>>>               e.printStackTrace();
+>>>           }
+>>       } catch (IOException e) {
+>>>           e.printStackTrace();
+>>       }finally {
+>>>           try {
+>>>>               objectInputStream.close();
+>>>           }catch (IOException e){
+>>>>               e.printStackTrace();
+>>>           }
+>>        }
+>   }
 11.java nio与io
 -
 
