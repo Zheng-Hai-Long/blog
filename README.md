@@ -295,7 +295,7 @@
     InputStreamReader isr=new InputStreamReader(in);//默认编译器编码
     InputStreamReader  完成byte流解析为char流，按照编码解析
     OutputStreamWriter 提供char流到byte流，按照编码处理
-###### 17)InputStreamreader/OutputStreamWrite
+###### 17)InputStreamReader/OutputStreamWrite
 ###### 18)FileReader/FileWrite
 ###### 19)BufferedReader/BufferedWrite
 ###### 20)PrintReader/PrintWrite
